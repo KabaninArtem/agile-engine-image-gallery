@@ -3,57 +3,62 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {environment} from '../../../../environments/environment';
-import {catchError} from 'rxjs/operators';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {catchError, filter, switchMap, take} from 'rxjs/operators';
+import {AuthService} from '../../services';
+import {RefreshTokenResponse} from '../../models/refresh-token-response';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  // private isRefreshing = false;
-  // private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private isRefreshing = false;
+  private refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      request = this._addToken(request, environment.token);
 
-      return next.handle(request).pipe(
-        catchError((error) => {
-          return throwError(error);
-        })
-    );
+    if (this.authService.jwtToken) {
+      request = this.addToken(request, this.authService.jwtToken);
+    }
+
+    return next.handle(request).pipe(catchError(error => {
+      if (error instanceof HttpErrorResponse && error.status === 401) {
+        return this.handle401Error(request, next);
+      } else {
+        return throwError(error);
+      }
+    }));
   }
 
-  private _addToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
+  private addToken(request: HttpRequest<any>, token: string | null): HttpRequest<any> {
     return request.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     });
   }
 
-  // private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
-  //   if (!this.isRefreshing) {
-  //     this.isRefreshing = true;
-  //     this._refreshTokenSubject.next(null);
-  //
-  //     return this.authService.refreshToken().pipe(
-  //       switchMap((tokenResource) => {
-  //         this.isRefreshing = false;
-  //         this.refreshTokenSubject.next(tokenResource.accessToken);
-  //         return next.handle(this._addToken(request, tokenResource.accessToken));
-  //       })
-  //     );
-  //   } else {
-  //     return this.refreshTokenSubject.pipe(
-  //       filter<string>(Boolean),
-  //       take(1),
-  //       switchMap((jwt) => {
-  //         return next.handle(this._addToken(request, jwt));
-  //       })
-  //     );
-  //   }
-  // }
+  private handle401Error(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
+    if (!this.isRefreshing) {
+      this.isRefreshing = true;
+      this.refreshTokenSubject.next(null);
+
+      return this.authService.refreshToken().pipe(
+        switchMap((tokenData: RefreshTokenResponse) => {
+          this.isRefreshing = false;
+          this.refreshTokenSubject.next(tokenData.token);
+          return next.handle(this.addToken(request, tokenData.token));
+        }));
+
+    } else {
+      return this.refreshTokenSubject.pipe(
+        filter(token => token != null),
+        take(1),
+        switchMap(jwt => {
+          return next.handle(this.addToken(request, jwt));
+        }));
+    }
+  }
 }
