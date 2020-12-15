@@ -17,9 +17,10 @@ export class AuthService {
     return localStorage.getItem(this.JWT_TOKEN);
   }
 
-  public refreshToken(): Observable<RefreshTokenResponse | object> {
+  public refreshToken(): Observable<RefreshTokenResponse> {
     return this.http.post(`${environment.apiUrl}/auth`, {apiKey: environment.apiKey}).pipe(
-      tap((data: RefreshTokenResponse | object) => {
+      // @ts-ignore
+      tap((data: RefreshTokenResponse) => {
        this.storeToken(data?.token);
       })
     );

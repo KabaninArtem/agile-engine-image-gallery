@@ -11,7 +11,7 @@ import {AuthService} from '../../services';
 import {RefreshTokenResponse} from '../../models/refresh-token-response';
 
 @Injectable()
-export class JwtInterceptor implements HttpInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
@@ -46,6 +46,7 @@ export class JwtInterceptor implements HttpInterceptor {
       this.refreshTokenSubject.next(null);
 
       return this.authService.refreshToken().pipe(
+        // @ts-ignore
         switchMap((tokenData: RefreshTokenResponse) => {
           this.isRefreshing = false;
           this.refreshTokenSubject.next(tokenData.token);
