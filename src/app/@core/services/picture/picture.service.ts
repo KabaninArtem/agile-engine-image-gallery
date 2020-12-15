@@ -11,7 +11,7 @@ export class PictureService {
 
   constructor(private readonly http: HttpClient) { }
 
-  public get allImages$(): Observable<PicturesResponse> {
+  public getImages$(): Observable<PicturesResponse> {
     return this.http.get<PicturesResponse>(`${environment.apiUrl}/images`);
   }
 }
