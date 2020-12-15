@@ -23,13 +23,13 @@ describe('AppComponent', () => {
   it(`should have as title 'agile-engine-image-gallery'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('agile-engine-image-gallery');
+    expect(app.title).toEqual('agile-engine-picture-gallery');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('agile-engine-image-gallery app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('agile-engine-picture-gallery app is running!');
   });
 });

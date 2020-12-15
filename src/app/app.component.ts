@@ -7,7 +7,7 @@ import {AuthService} from './@core/services';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'agile-engine-image-gallery';
+  title = 'agile-engine-picture-gallery';
 
   constructor(private readonly authService: AuthService) {
     this.authService.refreshToken().subscribe();

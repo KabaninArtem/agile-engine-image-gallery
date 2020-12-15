@@ -18,8 +18,7 @@ export class AuthService {
   }
 
   public refreshToken(): Observable<RefreshTokenResponse> {
-    return this.http.post(`${environment.apiUrl}/auth`, {apiKey: environment.apiKey}).pipe(
-      // @ts-ignore
+    return this.http.post<RefreshTokenResponse>(`${environment.apiUrl}/auth`, {apiKey: environment.apiKey}).pipe(
       tap((data: RefreshTokenResponse) => {
        this.storeToken(data?.token);
       })
