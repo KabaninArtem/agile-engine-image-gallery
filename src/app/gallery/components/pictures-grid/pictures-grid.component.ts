@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {PicturesStoreService} from '../../../@core/stores/pictures-store.service';
-import {Picture} from '../../../@core/models/picture';
+import {PicturesStoreService} from '../../../@core/stores';
+import {Picture} from '../../../@core/models';
 
 @Component({
   selector: 'app-pictures-grid',
