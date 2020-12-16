@@ -1,0 +1,11 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+button {
+  position: absolute;
+  top: var(--dialog-close-indent);
+  right: var(--dialog-close-indent);
+  z-index: 1;
+}
