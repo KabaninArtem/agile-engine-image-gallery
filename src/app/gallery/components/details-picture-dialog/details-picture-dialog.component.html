@@ -1,4 +1,12 @@
-<button mat-mini-fab (click)="closeDialog()">
+<button mat-mini-fab class="close-btn" (click)="closeDialog()">
   <mat-icon>close</mat-icon>
 </button>
-<app-details-picture></app-details-picture>
+<div class="details-wrapper">
+  <button mat-mini-fab class="navigation-control navigation-control--left" (click)="prevPicture()">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  <app-details-picture></app-details-picture>
+  <button mat-mini-fab class="navigation-control navigation-control--right" (click)="nextPicture()">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>

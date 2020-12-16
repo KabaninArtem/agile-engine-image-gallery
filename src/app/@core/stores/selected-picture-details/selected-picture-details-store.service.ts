@@ -14,4 +14,12 @@ export class SelectedPictureDetailsStoreService {
   public setDetails(details: PictureDetailsResponse): void {
     this.detailsStore$.next({...details});
   }
+
+  public get detailsSourceValue(): PictureDetailsResponse {
+    return {...this.detailsStore$.getValue()};
+  }
+
+  public get selectedPictureId(): string | undefined {
+    return this.detailsSourceValue.id;
+  }
 }

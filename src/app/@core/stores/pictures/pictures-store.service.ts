@@ -14,4 +14,20 @@ export class PicturesStoreService {
   public setPictures(picturesList: Picture[]): void {
     this.picturesStore$.next([...picturesList]);
   }
+
+  public get pictureSourceValue(): Picture[] {
+    return [...this.picturesStore$.getValue()];
+  }
+
+  public get picturesLength(): number {
+    return this.pictureSourceValue.length;
+  }
+
+  public get firstPicture(): Picture {
+    return this.pictureSourceValue[0];
+  }
+
+  public get lastPicture(): Picture {
+    return this.pictureSourceValue[this.picturesLength - 1];
+  }
 }
