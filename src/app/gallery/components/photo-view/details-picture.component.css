@@ -1,8 +1,8 @@
 :host {
   position: relative;
   display: flex;
-  min-width: 768px;
-  min-height: 512px;
+  min-width: var(--dialog-view-frame-width);
+  min-height: var(--dialog-view-frame-height);
   width: auto;
   height: auto;
 }
@@ -39,8 +39,11 @@ figure {
   height: auto;
 }
 
-figure:hover figcaption {
-
+img {
+  min-width: var(--dialog-view-frame-width);
+  min-height: var(--dialog-view-frame-height);
+  width: 100%;
+  height: auto;
 }
 
 figcaption {

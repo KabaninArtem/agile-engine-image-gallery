@@ -7,6 +7,7 @@ import { DetailsPictureComponent } from './components/photo-view/details-picture
 import { DetailsPictureDialogComponent } from './components/details-picture-dialog/details-picture-dialog.component';
 import { SharedModule } from '../@shared/shared.module';
 import { NgxPanZoomModule } from 'ngx-panzoom';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 
 
@@ -17,6 +18,7 @@ import { NgxPanZoomModule } from 'ngx-panzoom';
     GalleryRoutingModule,
     SharedModule,
     NgxPanZoomModule,
+    ClipboardModule,
   ]
 })
 export class GalleryModule { }

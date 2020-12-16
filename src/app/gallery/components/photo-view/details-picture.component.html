@@ -1,10 +1,11 @@
 <ng-container *ngIf="details$ | async as details">
-  <button mat-mini-fab (click)="sharePicture()">
+  <button mat-mini-fab matTooltip="Click to copy image url"
+          [cdkCopyToClipboard]="details.full_picture">
     <mat-icon>share</mat-icon>
   </button>
   <figure>
     <div class="panzoom-wrapper">
-      <pan-zoom [config]="panZoomConfig">
+      <pan-zoom [config]="panZoomConfig" >
         <img [src]="details.full_picture" alt="Picture by {{ details.author }}">
       </pan-zoom>
     </div>

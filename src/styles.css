@@ -5,6 +5,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 :root {
   --dialog-close-indent: 20px;
+  --dialog-view-frame-width: 768px;
+  --dialog-view-frame-height: 512px;
   --picture-details-caption-indent: 20px;
   --picture-details-caption-f-size: 16px;
   --dialog-close-size: 40px; /* hardcode; if change material btn type will be not relevant*/
