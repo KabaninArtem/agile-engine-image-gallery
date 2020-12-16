@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SelectedPictureDetailsStoreService} from '../../../@core/stores/selected-picture-details/selected-picture-details-store.service';
 import {PictureDetailsResponse} from '../../../@core/models';
 import {Observable} from 'rxjs';
+import {PanZoomConfig} from 'ngx-panzoom';
 
 @Component({
   selector: 'app-details-picture',
@@ -10,6 +11,8 @@ import {Observable} from 'rxjs';
 })
 export class DetailsPictureComponent implements OnInit {
   public details$!: Observable<PictureDetailsResponse>;
+  panZoomConfig: PanZoomConfig = new PanZoomConfig();
+
   constructor(private readonly detailsPictureStore: SelectedPictureDetailsStoreService) { }
 
   ngOnInit(): void {

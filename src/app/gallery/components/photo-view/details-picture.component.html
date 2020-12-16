@@ -2,12 +2,18 @@
   <button mat-mini-fab (click)="sharePicture()">
     <mat-icon>share</mat-icon>
   </button>
-  <figure>
-    <img [src]="details.full_picture" alt="Picture by {{ details.author }}">
-    <figcaption>
-      <span>Author: {{details.author}}</span>
-      <span>Camera: {{details?.camera || 'unknown'}}</span>
-      <span>Tags: {{details.tags}}</span>
-    </figcaption>
-  </figure>
+
+
+      <figure>
+        <div class="panzoom-wrapper">
+          <pan-zoom [config]="panZoomConfig">
+            <img [src]="details.full_picture" alt="Picture by {{ details.author }}">
+          </pan-zoom>
+        </div>
+        <figcaption>
+          <span>Author: {{details.author}}</span>
+          <span>Camera: {{details?.camera || 'unknown'}}</span>
+          <span>Tags: {{details.tags}}</span>
+        </figcaption>
+      </figure>
 </ng-container>

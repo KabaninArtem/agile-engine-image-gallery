@@ -6,6 +6,7 @@ import {GalleryRoutingModule} from './gallery-routing.module';
 import { DetailsPictureComponent } from './components/photo-view/details-picture.component';
 import { DetailsPictureDialogComponent } from './components/details-picture-dialog/details-picture-dialog.component';
 import { SharedModule } from '../@shared/shared.module';
+import { NgxPanZoomModule } from 'ngx-panzoom';
 
 
 
@@ -15,6 +16,7 @@ import { SharedModule } from '../@shared/shared.module';
     CommonModule,
     GalleryRoutingModule,
     SharedModule,
+    NgxPanZoomModule,
   ]
 })
 export class GalleryModule { }

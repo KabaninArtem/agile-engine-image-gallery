@@ -1,11 +1,23 @@
 :host {
   position: relative;
   display: flex;
+  min-width: 768px;
+  min-height: 512px;
+  width: auto;
+  height: auto;
 }
 
 :host:hover button {
   visibility: visible;
   opacity: 1;
+}
+
+.panzoom-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 button {
@@ -23,6 +35,8 @@ figure {
   position: relative;
   margin: 0;
   overflow: hidden;
+  width: 100%;
+  height: auto;
 }
 
 figure:hover figcaption {
