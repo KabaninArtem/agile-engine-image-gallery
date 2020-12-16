@@ -19,8 +19,8 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this.authService.jwtToken) {
-      request = this.addToken(request, this.authService.jwtToken);
+    if (this.authService.authToken) {
+      request = this.addToken(request, this.authService.authToken);
     }
 
     return next.handle(request).pipe(catchError(error => {

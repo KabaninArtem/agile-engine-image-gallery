@@ -1,6 +1,6 @@
 <ng-container *ngIf="details$ | async as details">
-  <button mat-mini-fab matTooltip="Click to copy image url"
-          [cdkCopyToClipboard]="details.full_picture">
+  <button *ngIf="details.full_picture" mat-mini-fab matTooltip="Click to copy image url"
+          cdkCopyToClipboard="{{details.full_picture}}">
     <mat-icon>share</mat-icon>
   </button>
   <figure>

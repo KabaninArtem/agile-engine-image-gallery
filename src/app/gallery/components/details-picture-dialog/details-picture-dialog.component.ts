@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {PictureService} from '../../../@core/services/picture/picture.service';
+import {PictureService} from '../../../@core/services';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {PictureDetailsResponse} from '../../../@core/models';
-import {SelectedPictureDetailsStoreService} from '../../../@core/stores/selected-picture-details/selected-picture-details-store.service';
-import {GalleryNavigationService} from '../../../@core/services/gallery-navigation/gallery-navigation.service';
+import {SelectedPictureDetailsStoreService} from '../../../@core/stores';
+import {GalleryNavigationService} from '../../../@core/services';
 import {take} from 'rxjs/operators';
 
 @Component({

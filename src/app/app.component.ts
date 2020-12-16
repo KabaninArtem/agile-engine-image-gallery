@@ -10,6 +10,8 @@ export class AppComponent {
   title = 'agile-engine-picture-gallery';
 
   constructor(private readonly authService: AuthService) {
-    this.authService.refreshToken().subscribe();
+    if (!this.authService.authToken) {
+      this.authService.refreshToken().subscribe();
+    }
   }
 }

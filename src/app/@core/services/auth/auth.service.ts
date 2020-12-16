@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  public get jwtToken(): string | null {
+  public get authToken(): string | null {
     return localStorage.getItem(this.JWT_TOKEN);
   }
 

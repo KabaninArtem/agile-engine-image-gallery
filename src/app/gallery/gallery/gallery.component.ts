@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PictureService} from '../../@core/services/picture/picture.service';
+import {PictureService} from '../../@core/services';
 import {PicturesResponse} from '../../@core/models';
 import {PicturesStoreService} from '../../@core/stores';
 
@@ -15,7 +15,6 @@ export class GalleryComponent implements OnInit {
     this.pictureService.getImages$().subscribe((images: PicturesResponse) => {
       this.picturesStore.setPictures(images.pictures);
     });
-    this.pictureService.getImage$('be89995bc7886d5a7312').subscribe(console.log);
   }
 
 }

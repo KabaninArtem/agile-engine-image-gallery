@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SelectedPictureDetailsStoreService} from '../../../@core/stores/selected-picture-details/selected-picture-details-store.service';
+import {SelectedPictureDetailsStoreService} from '../../../@core/stores';
 import {PictureDetailsResponse} from '../../../@core/models';
 import {Observable} from 'rxjs';
 import { PanZoomConfig, PanZoomAPI } from 'ngx-panzoom';
